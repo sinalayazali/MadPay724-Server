@@ -1,12 +1,12 @@
-﻿using MadPay724.Data.Repositories.Interface;
-using MadPay724.Data.Repositories.Repo;
+﻿using MadPay724.Repo.Repositories.Interface;
+using MadPay724.Repo.Repositories.Repo;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadPay724.Data.Infrastructure
+namespace MadPay724.Repo.Infrastructure
 {
     public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext : DbContext, new()
     {
@@ -40,9 +40,9 @@ namespace MadPay724.Data.Infrastructure
         }
 
 
-        public Task<int> SaveAsync()
+        public async Task<int> SaveAsync()
         {
-            return _db.SaveChangesAsync();
+            return await _db.SaveChangesAsync();
         }
 
         #endregion
